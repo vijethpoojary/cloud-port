@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+  }
+  
+  .glass-strong {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-cloud-blue-500/20;
+  }
+  
+  .status-dot {
+    @apply w-2 h-2 rounded-full animate-pulse-slow;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+}
+
