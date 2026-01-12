@@ -19,7 +19,6 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
     const handleClickOutside = (event) => {
       if (isOpen && containerRef.current) {
         const searchContainer = event.target.closest('[data-search-container]')
-        // Only close if click is outside both the dropdown and the search input container
         if (!containerRef.current.contains(event.target) && !searchContainer) {
           onClose()
         }
@@ -27,7 +26,6 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
     }
 
     if (isOpen) {
-      // Use a slight delay to avoid closing when opening via click
       const timeoutId = setTimeout(() => {
         document.addEventListener('mousedown', handleClickOutside)
       }, 100)
@@ -53,18 +51,18 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
   if (!isOpen) return null
 
   return (
-    <div ref={containerRef} className="absolute top-full left-0 mt-1 w-[600px] z-[9999]">
-      {/* Search Results Dropdown - AWS/Azure style */}
+    <div ref={containerRef} className="absolute top-full left-0 mt-1 w-full z-[9999]">
+      {/* Search Results Dropdown - AWS style with dark background */}
       {results.length > 0 && (
-        <div className="bg-gray-900 border border-gray-700 rounded-md shadow-2xl max-h-[70vh] overflow-hidden flex flex-col animate-slide-up">
+        <div className="bg-[#232F3E] border border-[#1a232e] rounded-md shadow-lg max-h-[70vh] overflow-hidden flex flex-col animate-slide-up">
           <div ref={resultsRef} className="overflow-y-auto">
             {Object.entries(groupedResults).map(([category, items]) => (
-              <div key={category} className="border-b border-gray-700 last:border-b-0">
-                <div className="px-4 py-2.5 bg-gray-800/50 border-b border-gray-700 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <div key={category} className="border-b border-[#1a232e] last:border-b-0">
+                <div className="px-4 py-2 bg-[#2C3E50] border-b border-[#1a232e] flex items-center justify-between">
+                  <span className="text-xs font-semibold text-gray-300 uppercase tracking-wide">
                     {category}
                   </span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-400">
                     {items.length} {items.length === 1 ? 'result' : 'results'}
                   </span>
                 </div>
@@ -79,10 +77,10 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
                         data-result-index={globalIndex}
                         onClick={() => onSelect(item)}
                         onKeyDown={onKeyDown}
-                        className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-all ${
+                        className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
                           isSelected
-                            ? 'bg-cloud-blue-600/20 text-cloud-blue-300 border-l-2 border-cloud-blue-500'
-                            : 'text-gray-300 hover:bg-gray-800/50 hover:text-gray-100'
+                            ? 'bg-[#0073BB] text-white'
+                            : 'text-gray-200 hover:bg-[#2C3E50]'
                         }`}
                         onMouseEnter={() => {
                           if (setSelectedIndex) {
@@ -90,14 +88,14 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
                           }
                         }}
                       >
-                        <span className="text-lg flex-shrink-0">{item.icon}</span>
+                        <span className="text-base flex-shrink-0">{item.icon}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-0.5">
                             <span className="text-sm font-medium truncate">{item.label}</span>
                             <span className={`px-1.5 py-0.5 rounded text-xs font-medium flex-shrink-0 ${
-                              item.type === 'section' ? 'bg-blue-500/20 text-blue-400' :
-                              item.type === 'service' ? 'bg-green-500/20 text-green-400' :
-                              'bg-purple-500/20 text-purple-400'
+                              item.type === 'section' ? 'bg-blue-600 text-white' :
+                              item.type === 'service' ? 'bg-green-600 text-white' :
+                              'bg-purple-600 text-white'
                             }`}>
                               {item.type}
                             </span>
@@ -108,7 +106,7 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
                           )}
                         </div>
                         {isSelected && (
-                          <span className="text-cloud-blue-400 text-xs flex-shrink-0">Enter →</span>
+                          <span className="text-white text-xs flex-shrink-0">Enter →</span>
                         )}
                       </button>
                     )
@@ -119,19 +117,19 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
           </div>
           
           {/* Footer with keyboard hints */}
-          <div className="px-4 py-2 border-t border-gray-700 bg-gray-800/50 flex items-center justify-between text-xs text-gray-400 flex-shrink-0">
+          <div className="px-4 py-2 border-t border-[#1a232e] bg-[#2C3E50] flex items-center justify-between text-xs text-gray-400 flex-shrink-0">
             <div className="flex items-center gap-3 flex-wrap">
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-gray-700 rounded text-xs">↑</kbd>
-                <kbd className="px-1.5 py-0.5 bg-gray-700 rounded text-xs">↓</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[#1a232e] border border-[#1a232e] rounded text-xs text-gray-300">↑</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[#1a232e] border border-[#1a232e] rounded text-xs text-gray-300">↓</kbd>
                 <span>Navigate</span>
               </span>
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-gray-700 rounded text-xs">Enter</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[#1a232e] border border-[#1a232e] rounded text-xs text-gray-300">Enter</kbd>
                 <span>Select</span>
               </span>
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-gray-700 rounded text-xs">Esc</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[#1a232e] border border-[#1a232e] rounded text-xs text-gray-300">Esc</kbd>
                 <span>Close</span>
               </span>
             </div>
@@ -142,18 +140,20 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
 
       {/* No Results */}
       {query && results.length === 0 && (
-        <div className="bg-gray-900 border border-gray-700 rounded-md shadow-2xl p-6 text-center animate-slide-up">
-          <span className="text-3xl mb-2 block">🔍</span>
-          <p className="text-gray-300 font-medium mb-1">No resources found</p>
+        <div className="bg-[#232F3E] border border-[#1a232e] rounded-md shadow-lg p-6 text-center animate-slide-up">
+          <svg className="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <p className="text-gray-200 font-medium mb-1">No resources found</p>
           <p className="text-xs text-gray-400">Try searching for "services", "projects", "docs", or "aws"</p>
         </div>
       )}
 
       {/* Empty State - Show suggestions when no query */}
       {!query && (
-        <div className="bg-gray-900 border border-gray-700 rounded-md shadow-2xl p-6 animate-slide-up">
-          <p className="text-gray-400 text-sm mb-2 text-center">Type to search resources, services, and sections</p>
-          <p className="text-xs text-gray-500 text-center">Try: docs, services, docker, aws, projects</p>
+        <div className="bg-[#232F3E] border border-[#1a232e] rounded-md shadow-lg p-6 animate-slide-up">
+          <p className="text-gray-300 text-sm mb-2 text-center">Type to search resources, services, and sections</p>
+          <p className="text-xs text-gray-400 text-center">Try: docs, services, docker, aws, projects</p>
         </div>
       )}
     </div>
@@ -161,4 +161,3 @@ const SearchBar = ({ query, results, selectedIndex, isOpen, onSelect, onKeyDown,
 }
 
 export default SearchBar
-

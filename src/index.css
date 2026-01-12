@@ -2,43 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500&display=swap');
+
 @layer base {
   body {
-    @apply bg-gray-950 text-gray-100 antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    background-color: #F2F3F3;
+    color: #16191F;
+    @apply antialiased;
+    font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #16191F;
+    font-weight: 500;
   }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+  .aws-card {
+    @apply bg-white border rounded-md shadow-sm;
+    border-color: #D5DBDB;
   }
   
-  .glass-strong {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  .aws-card-hover {
+    @apply transition-colors duration-150;
   }
   
-  .card-hover {
-    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-cloud-blue-500/20;
+  .aws-card-hover:hover {
+    border-color: #AAB7B8;
   }
   
-  .status-dot {
-    @apply w-2 h-2 rounded-full animate-pulse-slow;
+  .aws-button-primary {
+    @apply px-4 py-2 rounded-md text-sm font-medium transition-colors duration-150;
+    background-color: #FF9900;
+    border: 1px solid #FF9900;
+    color: #16191F;
   }
   
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
+  .aws-button-primary:hover {
+    background-color: #E68900;
+    border-color: #E68900;
   }
   
-  .animate-shimmer {
-    animation: shimmer 2s infinite;
+  .aws-button-secondary {
+    @apply bg-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-150;
+    border: 1px solid #D5DBDB;
+    color: #16191F;
+  }
+  
+  .aws-button-secondary:hover {
+    border-color: #0073BB;
+    color: #0073BB;
   }
 }
 

@@ -2,20 +2,20 @@ const Documentation = () => {
   return (
     <div className="space-y-8 animate-slide-up">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-100 mb-2">Platform Documentation</h2>
-        <p className="text-gray-400">System architecture and platform architect overview</p>
+        <h2 className="text-2xl font-semibold text-aws-text-primary mb-2">Platform Documentation</h2>
+        <p className="text-aws-text-secondary">System architecture and platform architect overview</p>
       </div>
 
       {/* Platform Architect Overview */}
-      <div className="glass-strong rounded-xl p-8 lg:p-12">
+      <div className="aws-card p-8 lg:p-12">
         <div className="flex items-start gap-4 mb-6">
-          <div className="p-4 bg-cloud-blue-500/20 rounded-lg">
+          <div className="p-4 bg-aws-blue-light rounded-md">
             <span className="text-4xl">👨‍💻</span>
           </div>
           <div className="flex-1">
-            <h3 className="text-2xl font-bold text-gray-100 mb-2">Platform Architect</h3>
-            <p className="text-cloud-blue-400 font-medium mb-4">Vijeth Poojary</p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-aws-text-primary mb-2">Platform Architect</h3>
+            <p className="text-aws-blue font-medium mb-4">Vijeth Poojary</p>
+            <p className="text-lg text-aws-text-secondary leading-relaxed">
               Associate Software Engineer at Gisul with hands-on experience in Full Stack Development, 
               Cloud Infrastructure, and DevOps automation. I work at the intersection of software engineering 
               and cloud technologies, building scalable applications and reliable deployment pipelines.
@@ -26,17 +26,17 @@ const Documentation = () => {
 
       {/* Current Focus */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="glass rounded-lg p-6">
+        <div className="aws-card p-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl">🎯</span>
-            <h3 className="text-xl font-semibold text-gray-100">Current Focus</h3>
+            <h3 className="text-xl font-semibold text-aws-text-primary">Current Focus</h3>
           </div>
-          <div className="space-y-3 text-gray-300">
+          <div className="space-y-3 text-aws-text-secondary">
             <p>
               Currently, I contribute to the development and maintenance of production-grade applications 
-              using <span className="text-cloud-blue-400 font-medium">Python (FastAPI)</span>, 
-              <span className="text-cloud-blue-400 font-medium"> Next.js</span>, 
-              <span className="text-cloud-blue-400 font-medium"> React.js</span>, and modern backend architectures.
+              using <span className="text-aws-blue font-medium">Python (FastAPI)</span>, 
+              <span className="text-aws-blue font-medium"> Next.js</span>, 
+              <span className="text-aws-blue font-medium"> React.js</span>, and modern backend architectures.
             </p>
             <p>
               I have practical exposure to designing APIs, integrating databases, and collaborating within 
@@ -45,26 +45,26 @@ const Documentation = () => {
           </div>
         </div>
 
-        <div className="glass rounded-lg p-6">
+        <div className="aws-card p-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl">☁️</span>
-            <h3 className="text-xl font-semibold text-gray-100">Cloud & DevOps Journey</h3>
+            <h3 className="text-xl font-semibold text-aws-text-primary">Cloud & DevOps Journey</h3>
           </div>
-          <div className="space-y-3 text-gray-300">
+          <div className="space-y-3 text-aws-text-secondary">
             <p>
               My cloud and DevOps journey includes working extensively with 
-              <span className="text-cloud-blue-400 font-medium"> AWS</span> and 
-              <span className="text-cloud-blue-400 font-medium"> Azure</span>, where I've implemented 
+              <span className="text-aws-blue font-medium"> AWS</span> and 
+              <span className="text-aws-blue font-medium"> Azure</span>, where I've implemented 
               infrastructure components such as EC2, VPC, IAM, S3, RDS, CloudWatch, CloudTrail, CloudFront, 
               Route 53, and Azure VM & Entra ID.
             </p>
             <p>
               I have hands-on experience automating CI/CD pipelines using 
-              <span className="text-cloud-blue-400 font-medium"> GitHub Actions</span> and 
-              <span className="text-cloud-blue-400 font-medium"> Jenkins</span>, containerizing applications 
-              with <span className="text-cloud-blue-400 font-medium">Docker</span>, orchestrating with 
-              <span className="text-cloud-blue-400 font-medium"> Kubernetes</span>, and provisioning infrastructure 
-              using <span className="text-cloud-blue-400 font-medium">Terraform</span>.
+              <span className="text-aws-blue font-medium"> GitHub Actions</span> and 
+              <span className="text-aws-blue font-medium"> Jenkins</span>, containerizing applications 
+              with <span className="text-aws-blue font-medium">Docker</span>, orchestrating with 
+              <span className="text-aws-blue font-medium"> Kubernetes</span>, and provisioning infrastructure 
+              using <span className="text-aws-blue font-medium">Terraform</span>.
             </p>
           </div>
         </div>
@@ -74,14 +74,14 @@ const Documentation = () => {
       <div className="glass rounded-lg p-6">
         <div className="flex items-center gap-3 mb-6">
           <span className="text-2xl">⚙️</span>
-          <h3 className="text-xl font-semibold text-gray-100">Technical Expertise Summary</h3>
+          <h3 className="text-xl font-semibold text-aws-text-primary">Technical Expertise Summary</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold text-cloud-blue-400 uppercase tracking-wide mb-3">Full Stack Development</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
+            <h4 className="text-sm font-semibold text-aws-blue uppercase tracking-wide mb-3">Full Stack Development</h4>
+            <ul className="space-y-2 text-sm text-aws-text-secondary">
               <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
+                <span className="text-green-600 mt-1">✓</span>
                 <span>Python (FastAPI, Flask)</span>
               </li>
               <li className="flex items-start gap-2">
@@ -146,33 +146,33 @@ const Documentation = () => {
       </div>
 
       {/* Engineering Philosophy */}
-      <div className="glass rounded-lg p-6 border-l-4 border-cloud-blue-500">
+      <div className="aws-card p-6 border-l-4 border-aws-blue">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-2xl">💡</span>
-          <h3 className="text-xl font-semibold text-gray-100">Engineering Philosophy</h3>
+          <h3 className="text-xl font-semibold text-aws-text-primary">Engineering Philosophy</h3>
         </div>
-        <div className="space-y-4 text-gray-300">
+        <div className="space-y-4 text-aws-text-secondary">
           <p>
-            I believe in building systems that are <span className="text-cloud-blue-400 font-medium">scalable</span>, 
-            <span className="text-cloud-blue-400 font-medium"> reliable</span>, and 
-            <span className="text-cloud-blue-400 font-medium"> maintainable</span>. My approach focuses on:
+            I believe in building systems that are <span className="text-aws-blue font-medium">scalable</span>, 
+            <span className="text-aws-blue font-medium"> reliable</span>, and 
+            <span className="text-aws-blue font-medium"> maintainable</span>. My approach focuses on:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div className="glass-strong rounded-lg p-4">
-              <h4 className="font-semibold text-gray-100 mb-2">🏗️ Architecture First</h4>
-              <p className="text-sm text-gray-400">Design scalable architectures that grow with business needs</p>
+            <div className="aws-card p-4">
+              <h4 className="font-semibold text-aws-text-primary mb-2">🏗️ Architecture First</h4>
+              <p className="text-sm text-aws-text-secondary">Design scalable architectures that grow with business needs</p>
             </div>
-            <div className="glass-strong rounded-lg p-4">
-              <h4 className="font-semibold text-gray-100 mb-2">🔄 Automation Driven</h4>
-              <p className="text-sm text-gray-400">Automate everything possible to reduce toil and increase reliability</p>
+            <div className="aws-card p-4">
+              <h4 className="font-semibold text-aws-text-primary mb-2">🔄 Automation Driven</h4>
+              <p className="text-sm text-aws-text-secondary">Automate everything possible to reduce toil and increase reliability</p>
             </div>
-            <div className="glass-strong rounded-lg p-4">
-              <h4 className="font-semibold text-gray-100 mb-2">📊 Data-Driven Decisions</h4>
-              <p className="text-sm text-gray-400">Monitor, measure, and optimize based on real metrics</p>
+            <div className="aws-card p-4">
+              <h4 className="font-semibold text-aws-text-primary mb-2">📊 Data-Driven Decisions</h4>
+              <p className="text-sm text-aws-text-secondary">Monitor, measure, and optimize based on real metrics</p>
             </div>
-            <div className="glass-strong rounded-lg p-4">
-              <h4 className="font-semibold text-gray-100 mb-2">🤝 Collaborative Approach</h4>
-              <p className="text-sm text-gray-400">Work within agile teams to deliver production-grade solutions</p>
+            <div className="aws-card p-4">
+              <h4 className="font-semibold text-aws-text-primary mb-2">🤝 Collaborative Approach</h4>
+              <p className="text-sm text-aws-text-secondary">Work within agile teams to deliver production-grade solutions</p>
             </div>
           </div>
         </div>
@@ -181,20 +181,20 @@ const Documentation = () => {
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="glass rounded-lg p-6 text-center">
-          <p className="text-3xl font-bold text-cloud-blue-400 mb-1">3+</p>
-          <p className="text-sm text-gray-400">Years Experience</p>
+          <p className="text-3xl font-semibold text-aws-blue mb-1">3+</p>
+          <p className="text-sm text-aws-text-secondary">Years Experience</p>
         </div>
-        <div className="glass rounded-lg p-6 text-center">
-          <p className="text-3xl font-bold text-green-400 mb-1">6+</p>
-          <p className="text-sm text-gray-400">Projects Deployed</p>
+        <div className="aws-card p-6 text-center">
+          <p className="text-3xl font-semibold text-green-700 mb-1">6+</p>
+          <p className="text-sm text-aws-text-secondary">Projects Deployed</p>
         </div>
-        <div className="glass rounded-lg p-6 text-center">
-          <p className="text-3xl font-bold text-purple-400 mb-1">18+</p>
-          <p className="text-sm text-gray-400">Services Mastered</p>
+        <div className="aws-card p-6 text-center">
+          <p className="text-3xl font-semibold text-purple-700 mb-1">18+</p>
+          <p className="text-sm text-aws-text-secondary">Services Mastered</p>
         </div>
-        <div className="glass rounded-lg p-6 text-center">
-          <p className="text-3xl font-bold text-yellow-400 mb-1">2</p>
-          <p className="text-sm text-gray-400">Cloud Platforms</p>
+        <div className="aws-card p-6 text-center">
+          <p className="text-3xl font-semibold text-yellow-700 mb-1">2</p>
+          <p className="text-sm text-aws-text-secondary">Cloud Platforms</p>
         </div>
       </div>
     </div>

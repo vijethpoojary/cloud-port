@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
+import AwsFooter from './components/AwsFooter'
 import Overview from './components/Overview'
 import Documentation from './components/Documentation'
 import Services from './components/Services'
@@ -13,13 +14,7 @@ import { useGlobalSearch } from './hooks/useGlobalSearch'
 
 function App() {
   const [activeSection, setActiveSection] = useState('overview')
-  const [isDark, setIsDark] = useState(true)
   const search = useGlobalSearch(setActiveSection)
-
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle('dark')
-  }
 
   const renderSection = () => {
     switch (activeSection) {
@@ -45,22 +40,21 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 flex flex-col">
+    <div className="min-h-screen bg-aws-bg-light flex flex-col" style={{ paddingBottom: '36px' }}>
       <Topbar 
-        isDark={isDark} 
-        toggleTheme={toggleTheme} 
         activeSection={activeSection} 
         setActiveSection={setActiveSection}
         search={search}
       />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-aws-bg-light">
           <div className="max-w-7xl mx-auto animate-fade-in">
             {renderSection()}
           </div>
         </main>
       </div>
+      <AwsFooter />
     </div>
   )
 }

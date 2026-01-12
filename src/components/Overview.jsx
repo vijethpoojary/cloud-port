@@ -17,94 +17,94 @@ const Overview = ({ onNavigate }) => {
   }
 
   return (
-    <div className="space-y-6 animate-slide-up">
-      {/* Account Summary Widgets */}
+    <div className="space-y-6 animate-fade-in">
+      {/* Account Summary Widgets - AWS Style */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="glass rounded-lg p-6">
+        <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-400">Active Services</p>
-            <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">Operational</span>
+            <p className="text-sm text-aws-text-secondary">Active Services</p>
+            <span className="text-xs px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded">Operational</span>
           </div>
-          <p className="text-3xl font-bold text-cloud-blue-400 mb-1">37</p>
-          <p className="text-xs text-gray-500">Across 7 categories</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">37</p>
+          <p className="text-xs text-aws-text-secondary">Across 7 categories</p>
         </div>
         
-        <div className="glass rounded-lg p-6">
+        <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-400">Running Workloads</p>
-            <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">Healthy</span>
+            <p className="text-sm text-aws-text-secondary">Running Workloads</p>
+            <span className="text-xs px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded">Healthy</span>
           </div>
-          <p className="text-3xl font-bold text-green-400 mb-1">6</p>
-          <p className="text-xs text-gray-500">Production environment</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">6</p>
+          <p className="text-xs text-aws-text-secondary">Production environment</p>
         </div>
         
-        <div className="glass rounded-lg p-6">
+        <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-400">Education</p>
-            <span className="text-xs px-2 py-1 bg-blue-500/20 text-blue-400 rounded">Active</span>
+            <p className="text-sm text-aws-text-secondary">Education</p>
+            <span className="text-xs px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded">Active</span>
           </div>
-          <p className="text-3xl font-bold text-purple-400 mb-1">7.68</p>
-          <p className="text-xs text-gray-500">CGPA - CSE (2021-2025)</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">7.68</p>
+          <p className="text-xs text-aws-text-secondary">CGPA - CSE (2021-2025)</p>
         </div>
         
-        <div className="glass rounded-lg p-6">
+        <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-400">Experience</p>
-            <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">100%</span>
+            <p className="text-sm text-aws-text-secondary">Experience</p>
+            <span className="text-xs px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded">100%</span>
           </div>
-          <p className="text-3xl font-bold text-yellow-400 mb-1">3</p>
-          <p className="text-xs text-gray-500">Professional roles</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">3</p>
+          <p className="text-xs text-aws-text-secondary">Professional roles</p>
         </div>
       </div>
 
-      {/* System Message Banner */}
-      <div className="glass-strong rounded-lg p-6 border-l-4 border-green-500">
+      {/* System Message Banner - AWS Style */}
+      <div className="aws-card p-6 border-l-4 border-green-500">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <span className="status-dot bg-green-400"></span>
+            <div className="w-2 h-2 bg-green-500 rounded-full mt-1"></div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-100 mb-1">All systems operational</h3>
-              <p className="text-sm text-gray-400">Platform health is excellent across all services</p>
+              <h3 className="text-lg font-semibold text-aws-text-primary mb-1">All systems operational</h3>
+              <p className="text-sm text-aws-text-secondary">Platform health is excellent across all services</p>
             </div>
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t border-aws-border">
           <div>
-            <p className="text-xs text-gray-500 mb-1">Last Deployment</p>
-            <p className="text-sm font-medium text-gray-300">3 days ago</p>
-            <p className="text-xs text-gray-500 mt-1">Deployment ID: dep-8a3f2</p>
+            <p className="text-xs text-aws-text-secondary mb-1">Last Deployment</p>
+            <p className="text-sm font-medium text-aws-text-primary">3 days ago</p>
+            <p className="text-xs text-aws-text-secondary mt-1">Deployment ID: dep-8a3f2</p>
           </div>
           <div>
-            <p className="text-xs text-gray-500 mb-1">Change Failure Rate</p>
-            <p className="text-sm font-medium text-green-400">0.2%</p>
-            <p className="text-xs text-gray-500 mt-1">Last 90 days</p>
+            <p className="text-xs text-aws-text-secondary mb-1">Change Failure Rate</p>
+            <p className="text-sm font-medium text-green-700">0.2%</p>
+            <p className="text-xs text-aws-text-secondary mt-1">Last 90 days</p>
           </div>
           <div>
-            <p className="text-xs text-gray-500 mb-1">Mean Time to Recovery</p>
-            <p className="text-sm font-medium text-gray-300">15 minutes</p>
-            <p className="text-xs text-gray-500 mt-1">Average resolution time</p>
+            <p className="text-xs text-aws-text-secondary mb-1">Mean Time to Recovery</p>
+            <p className="text-sm font-medium text-aws-text-primary">15 minutes</p>
+            <p className="text-xs text-aws-text-secondary mt-1">Average resolution time</p>
           </div>
         </div>
       </div>
 
-      {/* Platform Architect Overview Card */}
-      <div className="glass-strong rounded-lg p-6 border-l-4 border-cloud-blue-500">
+      {/* Platform Architect Overview Card - AWS Style */}
+      <div className="aws-card p-6 border-l-4 border-aws-blue">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-start gap-4 flex-1">
-            <div className="p-3 bg-cloud-blue-500/20 rounded-lg">
+            <div className="p-3 bg-aws-blue-light rounded-md">
               <span className="text-2xl">👨‍💻</span>
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-100 mb-2">Platform Architect</h3>
-              <p className="text-sm text-gray-300 leading-relaxed mb-3">
+              <h3 className="text-lg font-semibold text-aws-text-primary mb-2">Platform Architect</h3>
+              <p className="text-sm text-aws-text-secondary leading-relaxed mb-3">
                 Associate Software Engineer at Gisul with hands-on experience in Full Stack Development, 
                 Cloud Infrastructure, and DevOps automation. Working at the intersection of software engineering 
                 and cloud technologies, building scalable applications and reliable deployment pipelines.
               </p>
               <button
                 onClick={handleViewDocumentation}
-                className="text-sm text-cloud-blue-400 hover:text-cloud-blue-300 font-medium flex items-center gap-2 transition-colors"
+                className="text-sm text-aws-blue hover:text-aws-blue-hover font-medium flex items-center gap-2 transition-colors"
               >
                 <span>View Full Documentation</span>
                 <span>→</span>
@@ -114,77 +114,83 @@ const Overview = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Quick Actions */}
-      <div className="flex flex-wrap gap-4">
+      {/* Quick Actions - AWS Button Style */}
+      <div className="flex flex-wrap gap-3">
         <button 
           onClick={handleExploreResources}
-          className="px-6 py-3 bg-cloud-blue-600 hover:bg-cloud-blue-700 text-white rounded-lg font-semibold transition-colors card-hover flex items-center gap-2"
+          className="aws-button-primary flex items-center gap-2"
         >
-          <span>🔍</span>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
           <span>Explore Resources</span>
         </button>
         <button 
           onClick={handleViewDocumentation}
-          className="px-6 py-3 glass hover:bg-white/10 text-gray-200 rounded-lg font-semibold transition-colors card-hover flex items-center gap-2"
+          className="aws-button-secondary flex items-center gap-2"
         >
-          <span>📚</span>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
           <span>View Documentation</span>
         </button>
         <button 
           onClick={handleDownloadResume}
-          className="px-6 py-3 glass hover:bg-white/10 text-gray-200 rounded-lg font-semibold transition-colors card-hover flex items-center gap-2"
+          className="aws-button-secondary flex items-center gap-2"
         >
-          <span>📄</span>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
           <span>Download Architecture (Resume)</span>
         </button>
       </div>
 
-      {/* Platform Summary */}
+      {/* Platform Summary - AWS Style */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="glass rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-100 mb-4">Platform Overview</h3>
+        <div className="aws-card p-6">
+          <h3 className="text-lg font-semibold text-aws-text-primary mb-4">Platform Overview</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-400">Total Services</span>
-              <span className="text-sm font-semibold text-gray-300">37 services</span>
+              <span className="text-sm text-aws-text-secondary">Total Services</span>
+              <span className="text-sm font-medium text-aws-text-primary">37 services</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-400">Education</span>
-              <span className="text-sm font-semibold text-green-400">B.E. CSE</span>
+              <span className="text-sm text-aws-text-secondary">Education</span>
+              <span className="text-sm font-medium text-green-700">B.E. CSE</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-400">Active Regions</span>
-              <span className="text-sm font-semibold text-gray-300">ap-south-1, Global</span>
+              <span className="text-sm text-aws-text-secondary">Active Regions</span>
+              <span className="text-sm font-medium text-aws-text-primary">ap-south-1, Global</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-400">Environment</span>
-              <span className="text-sm font-semibold text-green-400">Production</span>
+              <span className="text-sm text-aws-text-secondary">Environment</span>
+              <span className="text-sm font-medium text-green-700">Production</span>
             </div>
           </div>
         </div>
 
-        <div className="glass rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-100 mb-4">Recent Activity</h3>
+        <div className="aws-card p-6">
+          <h3 className="text-lg font-semibold text-aws-text-primary mb-4">Recent Activity</h3>
           <div className="space-y-3">
             <div className="flex items-start gap-3 text-sm">
-              <span className="text-green-400 mt-0.5">✓</span>
+              <span className="text-green-600 mt-0.5">✓</span>
               <div>
-                <p className="text-gray-300">Service deployment completed</p>
-                <p className="text-xs text-gray-500 mt-0.5">2 hours ago</p>
+                <p className="text-aws-text-primary">Service deployment completed</p>
+                <p className="text-xs text-aws-text-secondary mt-0.5">2 hours ago</p>
               </div>
             </div>
             <div className="flex items-start gap-3 text-sm">
-              <span className="text-blue-400 mt-0.5">⟳</span>
+              <span className="text-aws-blue mt-0.5">⟳</span>
               <div>
-                <p className="text-gray-300">Workload scaling completed</p>
-                <p className="text-xs text-gray-500 mt-0.5">5 hours ago</p>
+                <p className="text-aws-text-primary">Workload scaling completed</p>
+                <p className="text-xs text-aws-text-secondary mt-0.5">5 hours ago</p>
               </div>
             </div>
             <div className="flex items-start gap-3 text-sm">
-              <span className="text-green-400 mt-0.5">✓</span>
+              <span className="text-green-600 mt-0.5">✓</span>
               <div>
-                <p className="text-gray-300">Infrastructure update deployed</p>
-                <p className="text-xs text-gray-500 mt-0.5">1 day ago</p>
+                <p className="text-aws-text-primary">Infrastructure update deployed</p>
+                <p className="text-xs text-aws-text-secondary mt-0.5">1 day ago</p>
               </div>
             </div>
           </div>
