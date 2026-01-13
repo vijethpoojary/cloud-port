@@ -1,11 +1,19 @@
+// Import AWS-style service icons
+import dashboardIcon from '../assets/icons/dashboard-icon.png'
+import documentationIcon from '../assets/icons/documentation-icon.png'
+import resourceInventoryIcon from '../assets/icons/resource-inventory-icon.png'
+import projectsIcon from '../assets/icons/projects-icon.png'
+import observabilityIcon from '../assets/icons/observability-icon.png'
+import securityIcon from '../assets/icons/security-icon.png'
+
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const menuItems = [
-    { id: 'overview', label: 'Dashboard', icon: '📊' },
-    { id: 'documentation', label: 'Documentation', icon: '📚' },
-    { id: 'services', label: 'Resource Inventory', icon: '☁️' },
-    { id: 'projects', label: 'Projects / Workloads', icon: '🚀' },
-    { id: 'observability', label: 'Observability', icon: '📉' },
-    { id: 'trust', label: 'Security / Compliance', icon: '🛡️' },
+    { id: 'overview', label: 'Dashboard', icon: dashboardIcon },
+    { id: 'documentation', label: 'Documentation', icon: documentationIcon },
+    { id: 'services', label: 'Resource Inventory', icon: resourceInventoryIcon },
+    { id: 'projects', label: 'Projects / Workloads', icon: projectsIcon },
+    { id: 'observability', label: 'Observability', icon: observabilityIcon },
+    { id: 'trust', label: 'Security / Compliance', icon: securityIcon },
   ]
 
   return (
@@ -25,7 +33,11 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 : 'text-aws-text-secondary hover:bg-white hover:text-aws-text-primary'
             }`}
           >
-            <span className="text-base flex-shrink-0">{item.icon}</span>
+            <img 
+              src={item.icon} 
+              alt={`${item.label} icon`}
+              className="w-5 h-5 flex-shrink-0"
+            />
             <span>{item.label}</span>
           </button>
         ))}

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
 import AwsFooter from './components/AwsFooter'
+import CloudShell from './components/CloudShell'
 import Overview from './components/Overview'
 import Documentation from './components/Documentation'
 import Services from './components/Services'
@@ -14,6 +15,7 @@ import { useGlobalSearch } from './hooks/useGlobalSearch'
 
 function App() {
   const [activeSection, setActiveSection] = useState('overview')
+  const [isCloudShellOpen, setIsCloudShellOpen] = useState(false)
   const search = useGlobalSearch(setActiveSection)
 
   const renderSection = () => {
@@ -45,6 +47,8 @@ function App() {
         activeSection={activeSection} 
         setActiveSection={setActiveSection}
         search={search}
+        onCloudShellToggle={() => setIsCloudShellOpen(!isCloudShellOpen)}
+        isCloudShellOpen={isCloudShellOpen}
       />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
@@ -54,7 +58,14 @@ function App() {
           </div>
         </main>
       </div>
-      <AwsFooter />
+      <AwsFooter 
+        isCloudShellOpen={isCloudShellOpen}
+        onCloudShellToggle={() => setIsCloudShellOpen(!isCloudShellOpen)}
+      />
+      <CloudShell
+        isOpen={isCloudShellOpen}
+        onClose={() => setIsCloudShellOpen(false)}
+      />
     </div>
   )
 }

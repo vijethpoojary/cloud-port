@@ -45,13 +45,25 @@ export const useGlobalSearch = (onNavigate) => {
     }
   }, [onNavigate])
 
-  // Handle Ctrl+K shortcut globally
+  // Handle Ctrl+K and Alt+S (Option+S) shortcuts globally
   useEffect(() => {
     const handleGlobalKeyPress = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      const isInputFocused = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA'
+      
+      // Ctrl+K or Cmd+K
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k' && !isInputFocused) {
         e.preventDefault()
         setIsOpen(true)
         // Focus will be handled by SearchBar component
+        return
+      }
+      
+      // Alt+S or Option+S
+      if (e.altKey && e.key === 's' && !isInputFocused) {
+        e.preventDefault()
+        setIsOpen(true)
+        // Focus will be handled by SearchBar component
+        return
       }
     }
     
