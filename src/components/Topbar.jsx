@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import SearchBar from './SearchBar'
 import VPLogo from './VPLogo'
 
@@ -6,6 +6,63 @@ const Topbar = ({ activeSection, setActiveSection, search, onCloudShellToggle, i
   const [showServicesMenu, setShowServicesMenu] = useState(false)
   const [showRegionMenu, setShowRegionMenu] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
+  const [selectedRegion, setSelectedRegion] = useState('us-east-1')
+  const regionMenuRef = useRef(null)
+  const userMenuRef = useRef(null)
+
+  // AWS Regions list
+  const awsRegions = [
+    { name: 'US East (N. Virginia)', code: 'us-east-1' },
+    { name: 'US East (Ohio)', code: 'us-east-2' },
+    { name: 'US West (N. California)', code: 'us-west-1' },
+    { name: 'US West (Oregon)', code: 'us-west-2' },
+    { name: 'Asia Pacific (Mumbai)', code: 'ap-south-1' },
+    { name: 'Asia Pacific (Osaka)', code: 'ap-northeast-3' },
+    { name: 'Asia Pacific (Seoul)', code: 'ap-northeast-2' },
+    { name: 'Asia Pacific (Singapore)', code: 'ap-southeast-1' },
+    { name: 'Asia Pacific (Sydney)', code: 'ap-southeast-2' },
+    { name: 'Asia Pacific (Tokyo)', code: 'ap-northeast-1' },
+    { name: 'Canada (Central)', code: 'ca-central-1' },
+    { name: 'Europe (Frankfurt)', code: 'eu-central-1' },
+    { name: 'Europe (Ireland)', code: 'eu-west-1' },
+    { name: 'Europe (London)', code: 'eu-west-2' },
+    { name: 'Europe (Paris)', code: 'eu-west-3' },
+    { name: 'Europe (Stockholm)', code: 'eu-north-1' },
+    { name: 'South America (São Paulo)', code: 'sa-east-1' },
+  ]
+
+  // Get display name for selected region
+  const getRegionDisplayName = (code) => {
+    const region = awsRegions.find(r => r.code === code)
+    return region ? region.name.split('(')[0].trim() : 'N. Virginia'
+  }
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (regionMenuRef.current && !regionMenuRef.current.contains(event.target)) {
+        setShowRegionMenu(false)
+      }
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setShowUserMenu(false)
+      }
+    }
+
+    if (showRegionMenu || showUserMenu) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showRegionMenu, showUserMenu])
+
+  // Copy to clipboard function
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      // You could add a toast notification here
+    })
+  }
 
   return (
     <header className="h-14 bg-[#232F3E] border-b border-[#1a232e] flex items-center justify-between px-4 relative z-50 rounded-t-lg">
@@ -152,36 +209,176 @@ const Topbar = ({ activeSection, setActiveSection, search, onCloudShellToggle, i
         <div className="h-6 w-px bg-gray-600 mx-2"></div>
 
         {/* Region Selector */}
-        <div className="relative">
+        <div className="relative" ref={regionMenuRef}>
           <button
             onClick={() => setShowRegionMenu(!showRegionMenu)}
-            className="flex items-center gap-1.5 px-2 py-1.5 rounded hover:bg-[#2C3E50] transition-colors"
+            className={`flex items-center gap-1.5 px-2 py-1.5 rounded transition-colors ${
+              showRegionMenu ? 'bg-[#2C3E50]' : 'hover:bg-[#2C3E50]'
+            }`}
           >
-            <span className="text-sm text-white font-medium">N. Virginia</span>
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span className="text-sm text-white font-medium">{getRegionDisplayName(selectedRegion)}</span>
+            <svg 
+              className={`w-4 h-4 text-white transition-transform ${showRegionMenu ? 'rotate-180' : ''}`}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
+
+          {/* Region Dropdown Menu */}
+          {showRegionMenu && (
+            <div className="absolute right-0 top-full mt-1 bg-[#232F3E] border border-[#1a232e] rounded shadow-lg min-w-[280px] max-h-[500px] overflow-y-auto z-[1000]">
+              <div className="py-1">
+                {awsRegions.map((region) => (
+                  <button
+                    key={region.code}
+                    onClick={() => {
+                      setSelectedRegion(region.code)
+                      setShowRegionMenu(false)
+                    }}
+                    className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                      selectedRegion === region.code
+                        ? 'bg-[#1a232e] text-white'
+                        : 'text-gray-300 hover:bg-[#2C3E50] hover:text-white'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">{region.name}</div>
+                        <div className="text-xs text-gray-400 mt-0.5">{region.code}</div>
+                      </div>
+                      {selectedRegion === region.code && (
+                        <svg 
+                          className="w-4 h-4 text-[#0073BB]" 
+                          fill="currentColor" 
+                          viewBox="0 0 20 20"
+                        >
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Divider */}
         <div className="h-6 w-px bg-gray-600 mx-2"></div>
 
         {/* User Account Info */}
-        <div className="relative">
+        <div className="relative" ref={userMenuRef}>
           <button
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-[#2C3E50] transition-colors"
+            className={`flex items-center gap-2 px-2 py-1.5 rounded transition-colors ${
+              showUserMenu ? 'bg-[#2C3E50]' : 'hover:bg-[#2C3E50]'
+            }`}
           >
             <div className="text-left">
               <div className="text-xs text-white leading-tight">Read/Write</div>
-              <div className="text-xs text-gray-300 leading-tight">vijeth@example.com</div>
-              <div className="text-xs text-gray-400 leading-tight">@ 1111-2222-3333</div>
+              <div className="text-xs text-gray-300 leading-tight">poojaryvijeth239@gmail.com</div>
             </div>
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg 
+              className={`w-4 h-4 text-white transition-transform ${showUserMenu ? 'rotate-180' : ''}`}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
+
+          {/* User Dropdown Menu */}
+          {showUserMenu && (
+            <div className="absolute right-0 top-full mt-1 bg-[#232F3E] border border-[#1a232e] rounded shadow-lg min-w-[320px] z-[1000]">
+              {/* Header Section */}
+              <div className="px-4 py-3 border-b border-[#1a232e]">
+                <div className="mb-3">
+                  <div className="text-xs text-gray-400 mb-1">Account ID:</div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-white font-medium">********</span>
+                    <button
+                      onClick={() => copyToClipboard('1111-2222-3333')}
+                      className="text-gray-400 hover:text-white transition-colors"
+                      title="Copy Account ID"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 mb-1">Federated user:</div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-white">AWSReservedSSO_ReadWrite/vijeth@example.com</span>
+                    <button
+                      onClick={() => copyToClipboard('AWSReservedSSO_ReadWrite/vijeth@example.com')}
+                      className="text-gray-400 hover:text-white transition-colors"
+                      title="Copy User Info"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Menu Items */}
+              <div className="py-1">
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-[#2C3E50] transition-colors"
+                >
+                  Account
+                </button>
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-[#2C3E50] transition-colors"
+                >
+                  Organization
+                </button>
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-[#2C3E50] transition-colors"
+                >
+                  Service Quotas
+                </button>
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-[#2C3E50] transition-colors"
+                >
+                  Billing Dashboard
+                </button>
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-[#2C3E50] transition-colors"
+                >
+                  Settings
+                </button>
+              </div>
+
+              {/* Footer Section */}
+              <div className="px-4 py-3 border-t border-[#1a232e] flex gap-2">
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="flex-1 px-4 py-2 text-sm font-medium text-white bg-[#2C3E50] hover:bg-[#34495E] rounded transition-colors"
+                >
+                  Switch role
+                </button>
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="flex-1 px-4 py-2 text-sm font-medium text-[#16191F] bg-[#FF9900] hover:bg-[#E68900] rounded transition-colors"
+                >
+                  Sign out
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Mobile Search Toggle */}
