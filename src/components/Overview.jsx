@@ -101,7 +101,7 @@ const Overview = ({ onNavigate }) => {
               <span className="text-2xl">👨‍💻</span>
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-aws-text-primary mb-2">Platform Architect</h3>
+              <h3 className="text-lg font-semibold text-aws-text-primary mb-2">Associate Software Engineer</h3>
               <p className="text-sm text-aws-text-secondary leading-relaxed mb-3">
                 Associate Software Engineer at Gisul with hands-on experience in Full Stack Development, 
                 Cloud Infrastructure, and DevOps automation. Working at the intersection of software engineering 
