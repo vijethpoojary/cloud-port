@@ -12,8 +12,13 @@ const Overview = ({ onNavigate }) => {
   }
 
   const handleDownloadResume = () => {
-    // In a real implementation, this would download or open a PDF
-    alert('Architecture document download - Add your PDF link here!')
+    // Create a link element and trigger download
+    const link = document.createElement('a')
+    link.href = '/resume.pdf' // Points to public/resume.pdf
+    link.download = 'Vijeth_Poojary_Resume.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   return (
@@ -22,38 +27,38 @@ const Overview = ({ onNavigate }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-aws-text-secondary">Active Services</p>
+            <p className="text-sm text-aws-text-secondary">Production Deployments</p>
             <span className="text-xs px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded">Operational</span>
           </div>
-          <p className="text-3xl font-semibold text-aws-text-primary mb-1">37</p>
-          <p className="text-xs text-aws-text-secondary">Across 7 categories</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">4</p>
+          <p className="text-xs text-aws-text-secondary">Full-stack & cloud applications</p>
         </div>
         
         <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-aws-text-secondary">Running Workloads</p>
+            <p className="text-sm text-aws-text-secondary">CI/CD Pipelines Built</p>
             <span className="text-xs px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded">Healthy</span>
           </div>
-          <p className="text-3xl font-semibold text-aws-text-primary mb-1">6</p>
-          <p className="text-xs text-aws-text-secondary">Production environment</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">2</p>
+          <p className="text-xs text-aws-text-secondary">Jenkins & GitHub Actions</p>
         </div>
         
         <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-aws-text-secondary">Education</p>
+            <p className="text-sm text-aws-text-secondary">Cloud Services Used</p>
             <span className="text-xs px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded">Active</span>
           </div>
-          <p className="text-3xl font-semibold text-aws-text-primary mb-1">7.68</p>
-          <p className="text-xs text-aws-text-secondary">CGPA - CSE (2021-2025)</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">15+</p>
+          <p className="text-xs text-aws-text-secondary">AWS & Azure ecosystem</p>
         </div>
         
         <div className="aws-card p-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-aws-text-secondary">Experience</p>
+            <p className="text-sm text-aws-text-secondary">Industry Experience</p>
             <span className="text-xs px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded">100%</span>
           </div>
-          <p className="text-3xl font-semibold text-aws-text-primary mb-1">3</p>
-          <p className="text-xs text-aws-text-secondary">Professional roles</p>
+          <p className="text-3xl font-semibold text-aws-text-primary mb-1">1+</p>
+          <p className="text-xs text-aws-text-secondary">Cloud, DevOps & Full stack</p>
         </div>
       </div>
 
@@ -63,27 +68,27 @@ const Overview = ({ onNavigate }) => {
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 bg-green-500 rounded-full mt-1"></div>
             <div>
-              <h3 className="text-lg font-semibold text-aws-text-primary mb-1">All systems operational</h3>
-              <p className="text-sm text-aws-text-secondary">Platform health is excellent across all services</p>
+              <h3 className="text-lg font-semibold text-aws-text-primary mb-1">Active Development & Deployments</h3>
+              <p className="text-sm text-aws-text-secondary">Cloud, DevOps, and full-stack projects actively built and deployed</p>
             </div>
           </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t border-aws-border">
           <div>
-            <p className="text-xs text-aws-text-secondary mb-1">Last Deployment</p>
-            <p className="text-sm font-medium text-aws-text-primary">3 days ago</p>
-            <p className="text-xs text-aws-text-secondary mt-1">Deployment ID: dep-8a3f2</p>
+            <p className="text-xs text-aws-text-secondary mb-1">Recent Deployment</p>
+            <p className="text-sm font-medium text-aws-text-primary">Production web application</p>
+            <p className="text-xs text-aws-text-secondary mt-1">Built using Next.js, FastAPI & MERN</p>
           </div>
           <div>
-            <p className="text-xs text-aws-text-secondary mb-1">Change Failure Rate</p>
-            <p className="text-sm font-medium text-green-700">0.2%</p>
-            <p className="text-xs text-aws-text-secondary mt-1">Last 90 days</p>
+            <p className="text-xs text-aws-text-secondary mb-1">Deployment Automation</p>
+            <p className="text-sm font-medium text-green-700">Docker & Kubernetes</p>
+            <p className="text-xs text-aws-text-secondary mt-1">CI/CD pipelines implemented</p>
           </div>
           <div>
-            <p className="text-xs text-aws-text-secondary mb-1">Mean Time to Recovery</p>
-            <p className="text-sm font-medium text-aws-text-primary">15 minutes</p>
-            <p className="text-xs text-aws-text-secondary mt-1">Average resolution time</p>
+            <p className="text-xs text-aws-text-secondary mb-1">Infrastructure Skills</p>
+            <p className="text-sm font-medium text-aws-text-primary">AWS & Azure environments</p>
+            <p className="text-xs text-aws-text-secondary mt-1">Monitoring & troubleshooting</p>
           </div>
         </div>
       </div>
