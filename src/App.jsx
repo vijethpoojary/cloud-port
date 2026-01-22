@@ -34,7 +34,7 @@ function App() {
         return <Observability />
       case 'trust':
         return <TrustCompliance />
-      case 'contact':
+      case 'Contact':
         return <Contact />
       default:
         return <Overview onNavigate={setActiveSection} />

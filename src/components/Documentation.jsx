@@ -71,79 +71,80 @@ const Documentation = () => {
       </div>
 
       {/* Technical Expertise Summary */}
-      <div className="glass rounded-lg p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="text-2xl">⚙️</span>
-          <h3 className="text-xl font-semibold text-aws-text-primary">Technical Expertise Summary</h3>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="space-y-3">
-            <h4 className="text-sm font-semibold text-aws-blue uppercase tracking-wide mb-3">Full Stack Development</h4>
-            <ul className="space-y-2 text-sm text-aws-text-secondary">
-              <li className="flex items-start gap-2">
-                <span className="text-green-600 mt-1">✓</span>
-                <span>Python (FastAPI, Flask)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>JavaScript (React.js, Next.js, Node.js)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>Express.js, REST APIs</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>Database Integration (MongoDB, MySQL, SQL Server)</span>
-              </li>
-            </ul>
-          </div>
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="space-y-3">
+    <h4 className="text-sm font-semibold text-aws-blue uppercase tracking-wide mb-3">
+      Full Stack Development
+    </h4>
+    <ul className="space-y-2 text-sm text-aws-text-secondary">
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Python (FastAPI, Flask)</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>JavaScript (React.js, Next.js, Node.js)</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Express.js, REST APIs</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Database Integration (MongoDB, MySQL, SQL Server)</span>
+      </li>
+    </ul>
+  </div>
 
-          <div className="space-y-3">
-            <h4 className="text-sm font-semibold text-cloud-blue-400 uppercase tracking-wide mb-3">Cloud Infrastructure</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>AWS: EC2, VPC, IAM, S3, RDS, CloudWatch, CloudTrail</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>CloudFront, Route 53, EFS</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>Azure: Virtual Machines, Storage, Entra ID</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>Infrastructure Design & Architecture</span>
-              </li>
-            </ul>
-          </div>
+  <div className="space-y-3">
+    <h4 className="text-sm font-semibold text-aws-blue uppercase tracking-wide mb-3">
+      Cloud Infrastructure
+    </h4>
+    <ul className="space-y-2 text-sm text-aws-text-secondary">
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>AWS: EC2, VPC, IAM, S3, RDS, CloudWatch, CloudTrail</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>CloudFront, Route 53, EFS</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Azure: Virtual Machines, Storage, Entra ID</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Infrastructure Design & Architecture</span>
+      </li>
+    </ul>
+  </div>
 
-          <div className="space-y-3">
-            <h4 className="text-sm font-semibold text-cloud-blue-400 uppercase tracking-wide mb-3">DevOps & Automation</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>CI/CD Pipelines (GitHub Actions, Jenkins)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>Containerization (Docker, Kubernetes)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>Infrastructure as Code (Terraform)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-400 mt-1">✓</span>
-                <span>Monitoring & Observability</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <div className="space-y-3">
+    <h4 className="text-sm font-semibold text-aws-blue uppercase tracking-wide mb-3">
+      DevOps & Automation
+    </h4>
+    <ul className="space-y-2 text-sm text-aws-text-secondary">
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>CI/CD Pipelines (GitHub Actions, Jenkins)</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Containerization (Docker, Kubernetes)</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Infrastructure as Code (Terraform)</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <span className="text-green-500 mt-1">✓</span>
+        <span>Monitoring & Observability</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
 
       {/* Engineering Philosophy */}
       <div className="aws-card p-6 border-l-4 border-aws-blue">

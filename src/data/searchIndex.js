@@ -66,12 +66,12 @@ export const searchIndex = [
   },
   {
     id: 'contact',
-    label: 'Support / Deploy Ticket',
+    label: 'Contact / Deploy Ticket',
     aliases: ['contact', 'support', 'ticket', 'message', 'reach', 'email', 'connect', 'communication', 'inquiry'],
     type: 'section',
     icon: '📬',
     description: 'Create and deploy a support ticket',
-    route: 'contact',
+    route: 'Contact',
   },
 
   // Programming Languages

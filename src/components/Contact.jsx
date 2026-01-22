@@ -7,74 +7,121 @@ const Contact = () => {
     message: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [logs, setLogs] = useState([])
+  const [showAlert, setShowAlert] = useState({ type: '', message: '' })
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // Validate form
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setShowAlert({
+        type: 'error',
+        message: 'All fields are required',
+      })
+      return
+    }
+
     setIsSubmitting(true)
-    setLogs([])
+    setShowAlert({ type: '', message: '' })
 
-    // Simulate terminal-style deployment logs
-    const deploymentLogs = [
-      { text: '[INFO] Initializing support ticket deployment...', color: 'text-blue-400', delay: 200 },
-      { text: '[INFO] Validating requester credentials...', color: 'text-blue-400', delay: 400 },
-      { text: '[OK] Requester validated: ' + formData.name, color: 'text-green-400', delay: 600 },
-      { text: '[INFO] Processing message payload...', color: 'text-blue-400', delay: 800 },
-      { text: '[INFO] Encrypting sensitive data...', color: 'text-blue-400', delay: 1000 },
-      { text: '[OK] Data encryption complete', color: 'text-green-400', delay: 1200 },
-      { text: '[INFO] Queueing ticket to support system...', color: 'text-blue-400', delay: 1400 },
-      { text: '[OK] Ticket successfully deployed to queue', color: 'text-green-400', delay: 1600 },
-      { text: '[SUCCESS] Deployment complete! Ticket ID: TKT-' + Math.random().toString(36).substr(2, 9).toUpperCase(), color: 'text-green-400', delay: 1800 },
-    ]
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/poojaryvijeth239@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _captcha: false,
+          _subject: 'Portfolio Contact – SES',
+          _template: 'box',
+        }),
+      })
 
-    deploymentLogs.forEach((log) => {
-      setTimeout(() => {
-        setLogs((prev) => [...prev, log])
-      }, log.delay)
-    })
-
-    setTimeout(() => {
+      if (response.ok) {
+        setShowAlert({
+          type: 'success',
+          message: 'Message sent successfully! Thank you for reaching out.',
+        })
+        setFormData({ name: '', email: '', message: '' })
+        
+        setTimeout(() => {
+          setShowAlert({ type: '', message: '' })
+        }, 5000)
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      setShowAlert({
+        type: 'error',
+        message: 'Failed to send message. Please try again.',
+      })
+    } finally {
       setIsSubmitting(false)
-      setShowSuccess(true)
-      setFormData({ name: '', email: '', message: '' })
-      
-      setTimeout(() => {
-        setShowSuccess(false)
-        setLogs([])
-      }, 8000)
-    }, 2000)
+    }
   }
 
   return (
     <div className="space-y-8 animate-slide-up">
+      {/* Page Header */}
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-100 mb-2">Deploy Support Ticket</h2>
-        <p className="text-gray-400">Create and deploy a support ticket to the platform architect</p>
+        <h1 className="text-3xl font-bold text-aws-text-primary mb-2">
+          Simple Email Service (SES) – Contact
+        </h1>
+        <p className="text-aws-text-secondary">
+          Send me a message and I'll get back to you as soon as possible
+        </p>
       </div>
 
-      <div className="glass-strong rounded-xl p-8 lg:p-12 max-w-4xl">
+      {/* Success/Error Alert */}
+      {showAlert.message && (
+        <div
+          className={`p-4 rounded-md border animate-fade-in ${
+            showAlert.type === 'success'
+              ? 'bg-green-50 border-green-300'
+              : 'bg-red-50 border-red-300'
+          }`}
+        >
+          <p
+            className={`text-sm font-medium ${
+              showAlert.type === 'success'
+                ? 'text-green-800'
+                : 'text-red-800'
+            }`}
+          >
+            {showAlert.type === 'success' ? '✓ ' : '✕ '}
+            {showAlert.message}
+          </p>
+        </div>
+      )}
+
+      {/* Contact Form Card */}
+      <div className="bg-white rounded-md border border-aws-border p-6 shadow-sm">
         <div className="mb-6">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-2xl">🎫</span>
-            <h3 className="text-xl font-semibold text-gray-100">Deploy a Support Ticket</h3>
-          </div>
-          <p className="text-sm text-gray-400">
-            Your ticket will be processed and deployed to the support queue
+          <h2 className="text-lg font-semibold text-aws-text-primary flex items-center gap-2">
+            <span className="text-xl">📧</span>
+            Send a Message
+          </h2>
+          <p className="text-sm text-aws-text-secondary mt-1">
+            Fill out the form below and I'll respond within 24 hours
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Full Name Field */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-              Requester Name <span className="text-red-400">*</span>
+            <label htmlFor="name" className="block text-sm font-medium text-aws-text-primary mb-2">
+              Full Name <span className="text-red-600">*</span>
             </label>
             <input
               type="text"
@@ -83,14 +130,16 @@ const Contact = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cloud-blue-500 focus:ring-2 focus:ring-cloud-blue-500/20 transition-all font-mono"
-              placeholder="requester-name"
+              placeholder="John Doe"
+              disabled={isSubmitting}
+              className="w-full px-4 py-2 border border-aws-border rounded-md text-aws-text-primary placeholder-aws-text-secondary focus:outline-none focus:border-aws-blue focus:ring-1 focus:ring-aws-blue disabled:bg-gray-50 disabled:cursor-not-allowed transition-colors"
             />
           </div>
 
+          {/* Email Address Field */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-              Requester Email <span className="text-red-400">*</span>
+            <label htmlFor="email" className="block text-sm font-medium text-aws-text-primary mb-2">
+              Email Address <span className="text-red-600">*</span>
             </label>
             <input
               type="email"
@@ -99,14 +148,16 @@ const Contact = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cloud-blue-500 focus:ring-2 focus:ring-cloud-blue-500/20 transition-all font-mono"
-              placeholder="requester@example.com"
+              placeholder="john@example.com"
+              disabled={isSubmitting}
+              className="w-full px-4 py-2 border border-aws-border rounded-md text-aws-text-primary placeholder-aws-text-secondary focus:outline-none focus:border-aws-blue focus:ring-1 focus:ring-aws-blue disabled:bg-gray-50 disabled:cursor-not-allowed transition-colors"
             />
           </div>
 
+          {/* Message Field */}
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-              Message Payload <span className="text-red-400">*</span>
+            <label htmlFor="message" className="block text-sm font-medium text-aws-text-primary mb-2">
+              Message <span className="text-red-600">*</span>
             </label>
             <textarea
               id="message"
@@ -114,87 +165,63 @@ const Contact = () => {
               value={formData.message}
               onChange={handleChange}
               required
-              rows={6}
-              className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cloud-blue-500 focus:ring-2 focus:ring-cloud-blue-500/20 transition-all resize-none font-mono text-sm"
-              placeholder="Enter your message payload here..."
+              rows="6"
+              placeholder="Your message here..."
+              disabled={isSubmitting}
+              className="w-full px-4 py-2 border border-aws-border rounded-md text-aws-text-primary placeholder-aws-text-secondary focus:outline-none focus:border-aws-blue focus:ring-1 focus:ring-aws-blue disabled:bg-gray-50 disabled:cursor-not-allowed transition-colors resize-none"
             />
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full px-6 py-3 bg-[#FF9900] hover:bg-[#E68900] disabled:bg-gray-400 disabled:cursor-not-allowed text-[#16191F] rounded-md font-medium transition-colors flex items-center justify-center gap-2"
+            className="w-full px-6 py-3 aws-button-primary  text-white font-medium rounded-md transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <>
-                <span className="animate-pulse">⏳</span>
-                <span>Deploying Ticket...</span>
+                <span className="inline-block animate-spin">⏳</span>
+                <span>Sending…</span>
               </>
             ) : (
               <>
-                <span>🚀</span>
-                <span>Deploy Ticket</span>
+                <span>📤</span>
+                <span>Send Message</span>
               </>
             )}
           </button>
         </form>
-
-        {/* Terminal-style Deployment Logs */}
-        {(isSubmitting || logs.length > 0) && (
-          <div className="mt-6 p-4 bg-gray-950 rounded-lg border border-gray-800 font-mono text-sm">
-            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-gray-800">
-              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-              <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
-              <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-              <span className="ml-3 text-xs text-gray-500">Deployment Terminal</span>
-            </div>
-            <div className="space-y-1 max-h-60 overflow-y-auto">
-              {logs.length === 0 && isSubmitting && (
-                <div className="text-gray-600 animate-pulse">Waiting for deployment logs...</div>
-              )}
-              {logs.map((log, idx) => (
-                <div key={idx} className={`${log.color} animate-fade-in`}>
-                  <span className="text-gray-600">$ </span>
-                  {log.text}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {showSuccess && (
-          <div className="mt-6 p-6 bg-green-500/20 border border-green-500/30 rounded-lg animate-fade-in">
-            <div className="flex items-start gap-3">
-              <span className="text-3xl">✅</span>
-              <div className="flex-1">
-                <p className="text-green-400 font-semibold text-lg mb-1">Ticket successfully deployed 🚀</p>
-                <p className="text-sm text-green-300/80 mb-3">
-                  Your support ticket has been queued for processing
-                </p>
-                <div className="mt-4 p-3 bg-gray-900/50 rounded border border-gray-800">
-                  <p className="text-xs text-gray-400 mb-1">Ticket Status: Queued</p>
-                  <p className="text-xs text-gray-400 mb-1">Response Time: Within 24 hours</p>
-                  <p className="text-xs text-gray-400">Priority: Normal</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Additional Contact Info */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl">
-        <div className="glass rounded-lg p-4 text-center">
-          <p className="text-sm text-gray-400 mb-1">Email</p>
-          <a href="mailto:poojaryvijeth239@gmail.com" className="text-cloud-blue-400 font-medium font-mono hover:underline">poojaryvijeth239@gmail.com</a>
+      {/* Contact Information Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-md border border-aws-border p-4">
+          <p className="text-xs font-semibold text-aws-text-secondary uppercase tracking-wide mb-2">
+            Email Address
+          </p>
+          <a
+            href="mailto:poojaryvijeth239@gmail.com"
+            className="text-aws-blue hover:text-aws-blue-hover font-medium text-sm break-all transition-colors"
+          >
+            poojaryvijeth239@gmail.com
+          </a>
         </div>
-        <div className="glass rounded-lg p-4 text-center">
-          <p className="text-sm text-gray-400 mb-1">Phone</p>
-          <a href="tel:+917795113205" className="text-cloud-blue-400 font-medium font-mono hover:underline">+91 77951 13205</a>
+
+        <div className="bg-white rounded-md border border-aws-border p-4">
+          <p className="text-xs font-semibold text-aws-text-secondary uppercase tracking-wide mb-2">
+            Response Time
+          </p>
+          <p className="text-aws-text-primary font-medium text-sm">Within 24 hours</p>
         </div>
-        <div className="glass rounded-lg p-4 text-center">
-          <p className="text-sm text-gray-400 mb-1">Portfolio</p>
-          <p className="text-cloud-blue-400 font-medium font-mono">Available</p>
+
+        <div className="bg-white rounded-md border border-aws-border p-4">
+          <p className="text-xs font-semibold text-aws-text-secondary uppercase tracking-wide mb-2">
+            Service Status
+          </p>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+            <p className="text-aws-text-primary font-medium text-sm">Operational</p>
+          </div>
         </div>
       </div>
     </div>

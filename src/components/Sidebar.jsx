@@ -5,6 +5,7 @@ import resourceInventoryIcon from '../assets/icons/resource-inventory-icon.png'
 import projectsIcon from '../assets/icons/projects-icon.png'
 import observabilityIcon from '../assets/icons/observability-icon.png'
 import securityIcon from '../assets/icons/security-icon.png'
+import sesIcon from '../assets/icons/ses-icon.png'
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const menuItems = [
@@ -14,6 +15,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
     { id: 'projects', label: 'Projects / Workloads', icon: projectsIcon },
     { id: 'observability', label: 'Observability', icon: observabilityIcon },
     { id: 'trust', label: 'Security / Compliance', icon: securityIcon },
+    { id: 'Contact', label: 'SES (Contact Us)', icon: sesIcon },
   ]
 
   return (
