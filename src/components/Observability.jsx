@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import GitHubActivity from './GitHubActivity'
 
 const Observability = () => {
+  const [activeTab, setActiveTab] = useState('system')
   const [metrics, setMetrics] = useState({
     cpu: 45,
     memory: 68,
@@ -78,12 +80,50 @@ const Observability = () => {
 
   return (
     <div className="space-y-8 animate-slide-up">
+      {/* Tab Navigation */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-aws-text-primary mb-2">System Telemetry</h2>
-        <p className="text-aws-text-secondary">Real-time system metrics and performance indicators</p>
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-semibold text-aws-text-primary mb-2">
+              {activeTab === 'system' ? 'System Telemetry' : 'GitHub Activity'}
+            </h2>
+            <p className="text-aws-text-secondary">
+              {activeTab === 'system' 
+                ? 'Real-time system metrics and performance indicators'
+                : 'Real-time GitHub contribution insights'}
+            </p>
+          </div>
+        </div>
+        
+        {/* Tab Buttons */}
+        <div className="flex gap-3 mb-6 border-b-2 border-aws-border pb-4">
+          <button
+            onClick={() => setActiveTab('system')}
+            className={`px-6 py-3 font-bold text-base transition-all duration-200 ${
+              activeTab === 'system'
+                ? 'bg-aws-blue text-white rounded-t-lg shadow-lg'
+                : 'text-aws-text-primary border-b-2 border-transparent hover:border-aws-border'
+            }`}
+          >
+            System Telemetry
+          </button>
+          <button
+            onClick={() => setActiveTab('github')}
+            className={`px-6 py-3 font-bold text-base transition-all duration-200 ${
+              activeTab === 'github'
+                ? 'bg-aws-blue text-white rounded-t-lg shadow-lg'
+                : 'text-aws-text-primary border-b-2 border-transparent hover:border-aws-border'
+            }`}
+          >
+            GitHub Activity
+          </button>
+        </div>
       </div>
 
-      {/* Key Metrics */}
+      {/* Tab Content */}
+      {activeTab === 'system' && (
+        <>
+          {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="aws-card p-6">
           <p className="text-sm text-aws-text-secondary mb-2">CPU Utilization</p>
@@ -269,7 +309,13 @@ const Observability = () => {
           ))}
         </div>
       </div>
-    </div>
+        </>
+      )}
+
+      {/* GitHub Activity Tab */}
+      {activeTab === 'github' && (
+        <GitHubActivity />
+      )}    </div>
   )
 }
 

@@ -11,7 +11,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
   const menuItems = [
     { id: 'overview', label: 'Dashboard', icon: dashboardIcon },
     { id: 'documentation', label: 'Documentation', icon: documentationIcon },
-    { id: 'services', label: 'Resource Inventory', icon: resourceInventoryIcon },
+    { id: 'services', label: 'Resource Inventory/skill', icon: resourceInventoryIcon },
     { id: 'projects', label: 'Projects / Workloads', icon: projectsIcon },
     { id: 'observability', label: 'Observability', icon: observabilityIcon },
     { id: 'trust', label: 'Security / Compliance', icon: securityIcon },
